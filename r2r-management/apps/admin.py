@@ -1,6 +1,11 @@
-from apps.models import BusinessUnit, RoomDetails, RoomPhoto, UnitFileAttachment
-
-# from expenses.models import UnitExpenses
+from apps.models import (
+    BusinessUnit,
+    RoomDetails,
+    RoomPhoto,
+    UnitFileAttachment,
+    PropertyArea,
+)
+from expenses.models import UnitExpenses
 
 from django.contrib import admin
 
@@ -29,13 +34,20 @@ class RoomPhotoInline(admin.TabularInline):
     fields = ("photo_name", "photo_path")
 
 
-class BusinessUnitAdmin(admin.ModelAdmin):
-    list_display = ("unit_number", "unit_name", "unit_rental", "unit_address")
-    search_fields = ("unit_number", "unit_name")
-    list_filter = ("unit_rental",)
+class ExpensesInline(admin.TabularInline):
+    model = UnitExpenses
+    extra = 1
+    fields = ("name", "description", "amount", "attachment")
 
-    inlines = [UnitFileAttachmentInline, RoomDetailsInline, RoomPhotoInline]
+
+class BusinessUnitAdmin(admin.ModelAdmin):
+    list_display = ("unit_number", "unit_name", "unit_rental", "area")
+    search_fields = ("unit_number", "unit_name")
+    list_filter = ("unit_rental", "area")
+
+    inlines = [UnitFileAttachmentInline, RoomDetailsInline, ExpensesInline]
 
 
 # Register the models
 admin.site.register(BusinessUnit, BusinessUnitAdmin)
+admin.site.register(PropertyArea)

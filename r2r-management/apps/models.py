@@ -1,11 +1,26 @@
 from django.db import models
 
 
+class PropertyArea(models.Model):
+    area_name = models.CharField(max_length=255)
+    area_description = models.CharField(max_length=255, null=False)
+
+    def __str__(self):
+        return f"{self.area_name}"
+
+    class Meta:
+        verbose_name = "Property Area"
+        verbose_name_plural = "Property Area"
+        db_table = "property_area"
+
+
 class BusinessUnit(models.Model):
     unit_number = models.CharField(max_length=100)
     unit_name = models.CharField(max_length=100)
     unit_rental = models.IntegerField()
     unit_address = models.CharField(max_length=255, null=True)
+
+    area = models.ForeignKey(PropertyArea, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.unit_number} - {self.unit_name}"
@@ -47,7 +62,7 @@ class RoomPhoto(models.Model):
     photo_name = models.CharField(max_length=255)
     photo_path = models.ImageField()
 
-    business_unit = models.ForeignKey(BusinessUnit, on_delete=models.CASCADE, null=True)
+    room = models.ForeignKey(RoomDetails, on_delete=models.CASCADE, null=True)
 
     class Meta:
         verbose_name = "Room Photo"
