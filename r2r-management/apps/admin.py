@@ -10,6 +10,10 @@ from expenses.models import UnitExpenses
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
+admin.site.site_header = "Sublet Management"
+admin.site.site_title = "Sublet Management Portal"
+admin.site.index_title = "Welcome to Sublet Management Portal"
+
 
 # Room Photo Inline (to be used in RoomDetails)
 class RoomPhotoInline(admin.TabularInline):
