@@ -1,0 +1,114 @@
+# R2R Chinese Translation.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_Hans\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Area Name"
+msgstr "区域名称"
+
+msgid "Area Description"
+msgstr "区域描述"
+
+msgid "Property Area"
+msgstr "物业区域"
+
+msgid "Unit Number"
+msgstr "单位编号"
+
+msgid "Unit Name"
+msgstr "单位名称"
+
+msgid "Unit Rental"
+msgstr "单位租金"
+
+msgid "Unit Address"
+msgstr "单位地址"
+
+msgid "Area"
+msgstr "区域"
+
+msgid "Business Unit"
+msgstr "商业单位"
+
+msgid "Business Units"
+msgstr "商业单位"
+
+msgid "File Name"
+msgstr "文件名称"
+
+msgid "File Path"
+msgstr "文件路径"
+
+msgid "Unit Attachment"
+msgstr "单位附件"
+
+msgid "Unit Attachments"
+msgstr "单位附件"
+
+msgid "Room Name"
+msgstr "房间名称"
+
+msgid "Best Case Rental"
+msgstr "最佳租金"
+
+msgid "Worst Case Rental"
+msgstr "最低租金"
+
+msgid "Actual Rental"
+msgstr "实际租金"
+
+msgid "Is Rented"
+msgstr "已出租"
+
+msgid "Room Detail"
+msgstr "房间详情"
+
+msgid "Room Details"
+msgstr "房间详情"
+
+msgid "Photo Name"
+msgstr "照片名称"
+
+msgid "Photo Path"
+msgstr "照片路径"
+
+msgid "Room"
+msgstr "房间"
+
+msgid "Room Photo"
+msgstr "房间照片"
+
+msgid "Room Photos"
+msgstr "房间照片"
+
+msgid "Name"
+msgstr "名称"
+
+msgid "Description"
+msgstr "描述"
+
+msgid "Amount"
+msgstr "金额"
+
+msgid "Attachment"
+msgstr "附件"
+
+msgid "Unit Expense"
+msgstr "单位支出"
+
+msgid "Unit Expenses"
+msgstr "单位支出"
