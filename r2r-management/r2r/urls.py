@@ -21,7 +21,11 @@ from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 
+from r2r.utils import health_check, readiness_check
+
 urlpatterns = [
+    path("health/", health_check, name="health_check"),
+    path("readiness/", readiness_check, name="readiness_check"),
     # Add this line for language switching
     path("i18n/", include("django.conf.urls.i18n")),
 ]
