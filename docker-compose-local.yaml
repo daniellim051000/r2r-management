@@ -1,0 +1,33 @@
+services:
+  database:
+    image: postgres:14-alpine
+    container_name: r2r_database
+    env_file:
+      - r2r-management/.env
+    ports:
+      - '5432:5432'
+    volumes:
+      - r2r-db-data:/var/lib/postgresql/data
+
+  web:
+    platform: linux/amd64
+    build:
+      context: ./r2r-management
+      dockerfile: Dockerfile
+    container_name: r2r_backend
+    command:
+      [
+       "python", "manage.py", "runserver"
+      ]
+    env_file:
+      - r2r-management/.env
+    depends_on:
+      - database
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./r2r-management:/app"
+    restart: on-failure
+
+volumes:
+  r2r-db-data:
