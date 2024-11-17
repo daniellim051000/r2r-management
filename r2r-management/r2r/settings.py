@@ -146,18 +146,34 @@ LOCALE_PATHS = [
 
 STATIC_URL = "static/"
 
-USE_AZURE = os.getenv("USE_AZURE")
+# Add this near your static files configuration
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+# Then your Azure storage configuration
+# Static files (CSS, JavaScript, Images)
+USE_AZURE: bool = (
+    os.getenv("USE_AZURE") == "True"
+)  # Make sure it's properly converted to boolean
 
 if USE_AZURE:
+    # Azure Storage Settings
+    AZURE_ACCOUNT_NAME = os.getenv("AZURE_ACCOUNT_NAME")
+    AZURE_CUSTOM_DOMAIN = f"{AZURE_ACCOUNT_NAME}.blob.core.windows.net"
+
+    # Static and Media Files Configuration
+    STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{os.getenv("STATIC_LOCATION")}/'
+    MEDIA_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{os.getenv("MEDIA_LOCATION")}/'
+
+    # Storage Configuration
     STORAGES = {
-        "default": {
+        "default": {  # For media files
             "BACKEND": "storages.backends.azure_storage.AzureStorage",
             "OPTIONS": {
                 "connection_string": os.getenv("AZURE_CONNECTION_STRING"),
                 "azure_container": os.getenv("MEDIA_LOCATION"),
             },
         },
-        "staticfiles": {
+        "staticfiles": {  # For static files
             "BACKEND": "storages.backends.azure_storage.AzureStorage",
             "OPTIONS": {
                 "connection_string": os.getenv("AZURE_CONNECTION_STRING"),
@@ -166,12 +182,17 @@ if USE_AZURE:
         },
     }
 
+    # Only include STATICFILES_DIRS if the directory exists
+    static_dir = os.path.join(BASE_DIR, "static")
+    if os.path.exists(static_dir):
+        STATICFILES_DIRS = [static_dir]
 
 else:
+    # Local development settings
     STATIC_URL = "static/"
     MEDIA_URL = "/media/"
     MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-
+    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
