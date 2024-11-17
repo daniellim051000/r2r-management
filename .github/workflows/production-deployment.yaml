@@ -37,7 +37,7 @@ jobs:
           echo "DB_HOST=${{ vars.DB_HOST }}" >> r2r-management/.env
           echo "DB_PORT=${{ vars.DB_PORT }}" >> r2r-management/.env
           echo "DEBUG=${{ vars.DEBUG }}" >> r2r-management/.env
-          echo "USE_AZURE_STORAGE=${{ vars.USE_AZURE }}" >> r2r-management/.env
+          echo "USE_AZURE=${{ vars.USE_AZURE }}" >> r2r-management/.env
           echo "MEDIA_LOCATION=${{ vars.MEDIA_LOCATION }}" >> r2r-management/.env
           echo "STATIC_LOCATION=${{ vars.STATIC_LOCATION }}" >> r2r-management/.env
           
