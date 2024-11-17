@@ -15,10 +15,7 @@ services:
       context: ./r2r-management
       dockerfile: Dockerfile
     container_name: r2r_backend
-    command:
-      [
-       "python", "manage.py", "runserver"
-      ]
+    command: [ "python", "manage.py", "runserver" ]
     env_file:
       - r2r-management/.env
     depends_on:
