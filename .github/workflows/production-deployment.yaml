@@ -2,7 +2,7 @@ name: Production Backend Deployment
 
 on:
   push:
-    branches: ["main"]
+    branches: ["master"]
   workflow_dispatch:
 
 env:
@@ -27,19 +27,19 @@ jobs:
       # Create .env from github secrets
       - name: Creating Backend Environment
         run: |
-          echo "ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }}" > spms_web/.env
-          echo "AZURE_CONNECTION_STRING=${{ secrets.AZURE_CONNECTION_STRING }}" >> spms_web/.env
-          echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> spms_web/.env
-          echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> spms_web/.env
+          echo "ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }}" > r2r-mangement/.env
+          echo "AZURE_CONNECTION_STRING=${{ secrets.AZURE_CONNECTION_STRING }}" >> r2r-mangement/.env
+          echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> r2r-mangement/.env
+          echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> r2r-mangement/.env
 
-          echo "POSTGRES_USER=${{ vars.POSTGRES_USER }}" >> spms_web/.env
-          echo "POSTGRES_DB=${{ vars.POSTGRES_DB }}" >> spms_web/.env
-          echo "DB_HOST=${{ vars.DB_HOST }}" >> spms_web/.env
-          echo "DB_PORT=${{ vars.DB_PORT }}" >> spms_web/.env
-          echo "DEBUG=${{ vars.DEBUG }}" >> spms_web/.env
-          echo "USE_AZURE_STORAGE=${{ vars.USE_AZURE }}" >> spms_web/.env
-          echo "MEDIA_LOCATION=${{ vars.MEDIA_LOCATION }}" >> spms_web/.env
-          echo "STATIC_LOCATION=${{ vars.STATIC_LOCATION }}" >> spms_web/.env
+          echo "POSTGRES_USER=${{ vars.POSTGRES_USER }}" >> r2r-mangement/.env
+          echo "POSTGRES_DB=${{ vars.POSTGRES_DB }}" >> r2r-mangement/.env
+          echo "DB_HOST=${{ vars.DB_HOST }}" >> r2r-mangement/.env
+          echo "DB_PORT=${{ vars.DB_PORT }}" >> r2r-mangement/.env
+          echo "DEBUG=${{ vars.DEBUG }}" >> r2r-mangement/.env
+          echo "USE_AZURE_STORAGE=${{ vars.USE_AZURE }}" >> r2r-mangement/.env
+          echo "MEDIA_LOCATION=${{ vars.MEDIA_LOCATION }}" >> r2r-mangement/.env
+          echo "STATIC_LOCATION=${{ vars.STATIC_LOCATION }}" >> r2r-mangement/.env
           
 
       # Logs in with your Azure credentials
@@ -53,7 +53,7 @@ jobs:
       # Builds and pushes an image up to your Azure Container Registry
       - name: Build and push image to ACR
         run: |
-          az acr build --image ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.ENVIRONMENT }}/${{ env.CONTAINER_NAME }}:${{ github.sha }} --registry ${{ env.AZURE_CONTAINER_REGISTRY }} -g ${{ env.RESOURCE_GROUP }} -f spms_web/Dockerfile spms_web
+          az acr build --image ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.ENVIRONMENT }}/${{ env.CONTAINER_NAME }}:${{ github.sha }} --registry ${{ env.AZURE_CONTAINER_REGISTRY }} -g ${{ env.RESOURCE_GROUP }} -f r2r-mangement/Dockerfile r2r-mangement
 
   deploy:
     permissions:
