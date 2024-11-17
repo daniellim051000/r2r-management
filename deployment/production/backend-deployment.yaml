@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: r2r-web
+  namespace: production
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: r2r-web
+  template:
+    metadata:
+      labels:
+        app: r2r-web
+    spec:
+      containers:
+      - name: r2r-web
+        image: rtoro.azurecr.io/production/r2r_web
+        ports:
+        - containerPort: 8000
+        command: [ "gunicorn", "r2r.wsgi:application", "--config=r2r/gunicorn.py" ]
